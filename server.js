@@ -11,7 +11,7 @@ const planRoutes = require("./routes/planRoute");
 const paymentGateway = require("./routes/paymentGatewayRoutes");
 const withdrawals = require("./routes/withdraw/withdrawRoutes");
 const emailRoutes = require("./routes/email/sendEmailGenerally");
-require("./cron/cronscheduler");
+require("./cron/cronScheduler");
 
 const app = express();
 
