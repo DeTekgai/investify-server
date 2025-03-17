@@ -19,7 +19,7 @@ const sendOTPEmail = (email, otp, name) => {
                             <tbody>
                             <tr>
                                 <td style="border-bottom:1px solid #cccccc;padding:24px">
-                                    <h2>Investment site</h2>
+                                    <h2>Cryphorizon</h2>
                                 </td>
                             </tr>
                             <tr>
@@ -50,7 +50,8 @@ const sendOTPEmail = (email, otp, name) => {
                         <tr>
                             <td style="padding:48px 24px 0 24px">
                                 <p style="font-family:'SF Pro Text',-apple-system,BlinkMacSystemFont,Roboto,'Segoe UI',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:12px;font-weight:400;line-height:1.4;color:#6a6f73;margin:0">
-                                        Delivered by TekGai.        
+                                        Delivered by CRYPHORIZON team.
+                                   
                                 </p>
                             </td>
                         </tr>
