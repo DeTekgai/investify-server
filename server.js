@@ -18,7 +18,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: "*",
+    origin: ["*", "https://cryphorizon.com", "https://cryphorizon.netlify.app"],
     credentials: true,
   })
 );
