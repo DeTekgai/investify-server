@@ -16,12 +16,21 @@ require("./cron/cronScheduler");
 const app = express();
 
 // Middleware
+const allowedOrigins = process.env.CORS_SERVER.split(",");
+
 app.use(
   cors({
-    origin: process.env.CORS_SERVER.split(","),
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
+
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
