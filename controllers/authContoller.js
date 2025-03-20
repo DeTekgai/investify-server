@@ -79,27 +79,25 @@ exports.registerUser = async (req, res) => {
 
 exports.verifyOTP = async (req, res) => {
   try {
-    const { otp } = req.body;
+    const { otp, email } = req.body; // Get email from request body
 
-    const email = req.session.tempEmail;
     if (!email) {
-      return res
-        .status(400)
-        .json({ message: "Session expired. Please register again." });
+      return res.status(400).json({ message: "Email is required." });
     }
 
     const tempUser = await TempUser.findOne({ email });
+
     if (!tempUser) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "User not found or session expired." });
     }
 
-    // OTP check
+    // Check OTP and expiration
     if (tempUser.otp !== otp || tempUser.otpExpiresAt < Date.now()) {
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
 
+    // Create a permanent user
     const { first_name, last_name, username, password, profile_img } = tempUser;
-
     await User.create({
       first_name,
       last_name,
@@ -111,12 +109,11 @@ exports.verifyOTP = async (req, res) => {
       referrals: 0,
     });
 
+    // Delete temp user after verification
     await TempUser.deleteOne({ email });
-    req.session.tempEmail = null;
 
-    res
-      .status(200)
-      .json({ message: "Registration complete! You can now log in." });
+    res.status(200).json({ message: "Registration complete! You can now log in." });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error verifying OTP", error });
