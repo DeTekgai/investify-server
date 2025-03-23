@@ -83,7 +83,7 @@ exports.sendUserAnEmail = async (req, res) => {
           <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #fff;">
             <tbody>
               <!-- Logo Section -->
-              <tr style="background: #cccccc;">
+              <tr>
                 <td style="border-bottom: 1px solid #cccccc; padding: 24px;">
                 </td>
               </tr>
@@ -99,7 +99,7 @@ exports.sendUserAnEmail = async (req, res) => {
                   <p>
                     <a style="text-decoration: none; color: #1c1d1f;"></a>
                   </p>
-                  <div style="background-color: #d3d3d352;">
+                  <div>
                     ${message}
                   </div>
                   <p></p>
