@@ -85,11 +85,6 @@ exports.sendUserAnEmail = async (req, res) => {
               <!-- Logo Section -->
               <tr style="background: #000080;">
                 <td style="border-bottom: 1px solid #cccccc; padding: 24px;">
-                  <img 
-                    src="https://res.cloudinary.com/dtpicchy6/image/upload/v1733577120/profile_images/lombx7evp3w6vf7kr6h9.png" 
-                    alt="Logo" 
-                    style="max-width: 200px; border-radius: 10px;"
-                  />
                 </td>
               </tr>
 
@@ -115,7 +110,7 @@ exports.sendUserAnEmail = async (req, res) => {
               <tr>
                 <td style="padding: 38px 24px 0 24px;">
                   <p style="font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 12px; font-weight: 400; line-height: 1.4; color: #6a6f73; margin: 0;">
-                    Delivered by TekGai.
+                    Delivered by CRYPHORIZON.
                   </p>
                 </td>
               </tr>
@@ -133,13 +128,6 @@ exports.sendUserAnEmail = async (req, res) => {
   </table>
 </div>
 `,
-      //  <div style="width: 100%; max-width: 100%; margin: 0 auto; padding: 20px; background-color: #eee; font-family: Arial, sans-serif;">
-      //  <div style="text-align: center; margin-bottom: 20px;">
-      //    <img src="https://res.cloudinary.com/dtpicchy6/image/upload/v1733577120/profile_images/lombx7evp3w6vf7kr6h9.png" alt="Logo" style="max-width: 200px; border-radius: 10px;"/>
-      //  </div>
-      //  <div>
-      //    ${message}
-      // </div>     // html: message,
     };
 
     // Send the email
