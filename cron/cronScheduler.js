@@ -1,4 +1,3 @@
-const cron = require("node-cron");
 const ActiveInvestment = require("../models/activeInvestmentPlan");
 const User = require("../models/userModel");
 
@@ -6,16 +5,12 @@ exports.setupDailyCronJob = async (userId, plan, amount, investmentId) => {
   try {
     let executionCount = 0;
 
-    const task = cron.schedule("0 0 * * *", async () => {
-      const activeInvestment = await ActiveInvestment.findById(
-        investmentId
-      ).populate("user");
+    const intervalId = setInterval(async () => {
+      const activeInvestment = await ActiveInvestment.findById(investmentId).populate("user");
 
       if (!activeInvestment || activeInvestment.isCompleted) {
-        console.log(
-          `Investment ${investmentId} is already completed or does not exist.`
-        );
-        task.stop();
+        console.log(`Investment ${investmentId} is already completed or does not exist.`);
+        clearInterval(intervalId);
         return;
       }
 
@@ -34,18 +29,15 @@ exports.setupDailyCronJob = async (userId, plan, amount, investmentId) => {
         user.balance += activeInvestment.amount;
         user.user_plan = null;
         activeInvestment.isCompleted = true;
-        await user.save();
 
-        console.log(
-          `Investment ${investmentId} completed for ${user.username}`
-        );
-        user.user_plan = null;
+        await user.save();
         await ActiveInvestment.findByIdAndDelete(investmentId);
 
-        task.stop();
+        console.log(`Investment ${investmentId} completed for ${user.username}`);
+        clearInterval(intervalId);
       }
-    });
+    }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
   } catch (error) {
-    console.error("Error setting up cron job:", error);
+    console.error("Error setting up investment interval:", error);
   }
 };
