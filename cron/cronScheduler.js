@@ -36,7 +36,7 @@ exports.setupDailyCronJob = async (userId, plan, amount, investmentId) => {
         console.log(`Investment ${investmentId} completed for ${user.username}`);
         clearInterval(intervalId);
       }
-    }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+    }, 5 * 60 * 1000); // 24 hours in milliseconds
   } catch (error) {
     console.error("Error setting up investment interval:", error);
   }
